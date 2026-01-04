@@ -8,6 +8,7 @@
   "modules-left": ["hyprland/workspaces"],
   "modules-center": ["clock#day","clock#time","clock#date"],
   "modules-right": [
+    "group/system",
     "network",
     "idle_inhibitor",
     "cpu",
@@ -51,22 +52,23 @@
     "format": "{:%H:%M}",
     "tooltip": false
   },
-  "clock#date": {
-    "interval": 300,
-    "format": "{:%d,%m}",
-    "tooltip-format": "{:%d %B %Y}",
-    "locale": "C.UTF-8"
+  "clock#date": { 
+    "interval": 300, 
+    "format": "{:%d,%m}", 
+    "tooltip-format": "{:%d %B %Y}", 
+    "locale": 
+    "C.UTF-8" 
   },
   "cpu": {
     "interval": 3,
-    "format": "\uf4bc {usage}% ({load})",
+    "format": "\uf4bc {usage}% ({load}) |",
     "states": {
       "warning": 70,
       "critical": 90
     }
   },
   "idle_inhibitor": {
-    "format": "{icon} ",
+    "format": "{icon}  |",
     "format-icons": {
       "activated": "",
       "deactivated": ""
@@ -74,14 +76,14 @@
   },
   "memory": {
     "interval": 3,
-    "format": " {}%",
+    "format": " {}% |",
     "states": {
       "warning": 70,
       "critical": 90
     }
   },
   "disk": {
-    "format": "\uf0a0 {percentage_used}%",
+    "format": "\uf0a0 {percentage_used}% |",
     "path": "/",
     "states": {
       "warning": 90,
@@ -91,7 +93,7 @@
   "network": {
     "interval": 3,
     "format-wifi": " {essid}",
-    "format-ethernet": "\udb80\ude00 {ifname}: {ipaddr}/{cidr}",
+    "format-ethernet": "\udb80\ude00 {ifname} |",
     "format-disconnected": "⚠  Disconnected",
     "tooltip-format": "{ifname}: {ipaddr} (signal: {signalStrength}%)"
   }, 
@@ -111,5 +113,49 @@
     "format": " {}",
     "exec": "uptime | awk '{print $3}'|sed 's/,//'",
     "interval": 60
+  },
+  //----------------------------------------------------------------------------
+  //Group Modules
+  //----------------------------------------------------------------------------
+
+  "group/system": {
+    "orientation": "inherit",
+    "drawer": {
+      "transition-duration": 200,
+      "children-class": "sys-child",
+      "transition-left-to-right": false
+    },
+    "modules": [
+      "custom/sys-indicator",
+      "pulseaudio",
+      "backlight"
+    ]
+  },
+  
+  "custom/sys-indicator": {
+    "format": "",
+  },
+
+  "pulseaudio": {
+    "format": "{icon}",
+    "format-icons": [
+      "",
+      "",
+      ""
+    ],
+    "on-scroll-up": "pamixer -i 5",
+    "on-scroll-down": "pamixer -d 5",
+    "tooltip": false
+  },
+ 
+  "backlight": {
+    "format": "{icon}",
+    "format-icons": [
+      "",
+      ""
+    ],
+    "on-scroll-up": "brightnessctl set +5%",
+    "on-scroll-down": "brightnessctl set 5%-",
+    "tooltip": false
   }
 }

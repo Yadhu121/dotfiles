@@ -125,6 +125,7 @@
 
 #network {
   background: transparent;
+
 }
 
 #network.disconnected {
@@ -171,4 +172,24 @@
   border-color: #2f343a;
   color: #ffffff;
   background-color: #900000;
+}
+
+#custom-uptime {
+  padding-right: 5px;
+}
+
+#custom-sys-indicator {
+  margin-right: 8px;
+}
+
+#pulseaudio {
+  margin-right: 8px;
+}
+
+#group-system .sys-child {
+  margin-right: 8px;
+}
+
+#group-system {
+  padding: 0 6px;
 }
