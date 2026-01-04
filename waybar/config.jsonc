@@ -1,0 +1,40 @@
+{
+    "layer": "top", //To make waybar's layer on top of eveything else.,
+    //"layer": "bottom", //To make waybar's layer below eveything else.
+
+    "output": "HDMI-A-1",
+
+    "position": "top", //To set waybar's position to top.
+    //"position": "bottom", //To set waybar's position to bottom.
+    //"position": "right", //To set waybar's position to right.
+    //"position": "left", //To set waybar's position to left.
+
+    //"height":,
+
+    //"width":,
+
+    "modules-left": ["hyprland/window"],
+    "modules-center": ["hyprland/workspaces"],
+    //"modules-right":,
+
+    "spacing": 4,
+
+    "mode": "dock",
+
+    "start_hidden": true,
+
+    "modifier-reset": "release",
+
+    "exclusive": true,
+
+    "fixed-center": true,
+
+    "passthrough": false,
+
+    "reload_style_on_change": true,
+
+    "on-sigusr1": "toggle",
+    "on-sigusr2": "reload",
+
+    
+}
