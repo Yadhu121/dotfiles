@@ -1,0 +1,174 @@
+/* -----------------------------------------------------------------------------
+ * Keyframes
+ * -------------------------------------------------------------------------- */
+
+@keyframes blink-warning {
+  70% {
+    color: white;
+  }
+
+  to {
+    color: white;
+    background-color: orange;
+  }
+}
+
+@keyframes blink-critical {
+  70% {
+    color: white;
+  }
+
+  to {
+    color: white;
+    background-color: red;
+  }
+}
+
+/* -----------------------------------------------------------------------------
+ * Base styles
+ * -------------------------------------------------------------------------- */
+
+* {
+  border: none;
+  border-radius: 0;
+  min-height: 0;
+  margin: 0;
+  padding: 0;
+}
+
+
+#waybar {
+  background-color: transparent;
+  color: #ffffff;
+  font-family: monospace, system-ui, sans-serif;
+  font-size: 12px;
+}
+
+/* -----------------------------------------------------------------------------
+ * Module styles
+ * -------------------------------------------------------------------------- */
+/* Each module */
+#clock,
+#cpu,
+#custom-pacman,
+#custom-uptime,
+#idle_inhibitor,
+#disk,
+#memory,
+#network,
+
+#clock.day {
+  background: transparent;
+  font-size: 11px;
+  margin-right: 6px;
+  opacity: 0.7;
+}
+
+#clock.time {
+  background: transparent;
+  font-size: 16px;
+  font-weight: bold;
+  margin-left: 8px;
+  margin-right: 8px;
+}
+
+#clock.date {
+  background: transparent;
+  font-size: 11px;
+  margin-left: 6px;
+  opacity: 0.7;
+}
+
+#cpu {
+  background: transparent;
+}
+
+#cpu.warning {
+  color: orange;
+}
+
+#cpu.critical {
+  color: red;
+}
+
+#disk {
+  background: transparent;
+}
+
+#disk.warning {
+  color: orange;
+}
+
+#disk.critical {
+  color: red;
+}
+
+#memory {
+  background: transparent;
+}
+
+#memory {
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+#memory.warning {
+  color: orange;
+}
+
+#memory.critical {
+  color: red;
+  animation-name: blink-critical;
+  animation-duration: 2s;
+}
+
+#network {
+  background: transparent;
+}
+
+#network.disconnected {
+  color: orange;
+}
+
+#workspaces {
+  padding: 2px;
+  font-size: 10px;
+}
+
+#workspaces .active * {
+  color: #9746c6;
+}
+
+#workspaces button {
+  border-top: 2px solid transparent;
+  padding-bottom: 2px;
+  padding-left: 4px;
+  padding-right: 10px;
+  color: white;
+}
+
+#workspaces button:hover {
+  background: inherit;
+  box-shadow: inherit;
+  text-shadow: inherit;
+  color: peru;
+}
+
+#workspaces button.visible {
+  border-color: transparent;
+  color: #ffffff;
+  background-color: transparent;
+}
+
+#workspaces button.focused {
+  border-color: #4c7899;
+  color: #ffffff;
+  background-color: #285577;
+}
+
+#workspaces button.urgent {
+  border-color: #2f343a;
+  color: #ffffff;
+  background-color: #900000;
+}
