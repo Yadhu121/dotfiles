@@ -1,0 +1,6 @@
+window {
+  background-color: #282c34;
+  border: 2px solid #61afef;
+  border-radius: 10px;
+  padding: 10px;
+}

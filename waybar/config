@@ -5,7 +5,7 @@
   "layer": "top",
   "position": "top",
   "height": 26,
-  "modules-left": ["hyprland/workspaces"],
+  "modules-left": ["hyprland/workspaces","custom/spotify"],
   "modules-center": ["clock#day","clock#time","clock#date"],
   "modules-right": [
     "group/system",
@@ -92,7 +92,7 @@
   },
   "network": {
     "interval": 3,
-    "format-wifi": " {essid}",
+    "format-wifi": "{essid}",
     "format-ethernet": "\udb80\ude00 {ifname} |",
     "format-disconnected": "⚠  Disconnected",
     "tooltip-format": "{ifname}: {ipaddr} (signal: {signalStrength}%)"
@@ -103,7 +103,7 @@
   // -------------------------------------------------------------------------
 
   "custom/pacman": {
-    "format": " {} updates available",
+    "format": " {} updates available |",
     "exec": "checkupdates | wc -l",
     "exec-if": "[ -f /etc/arch-release ] && [ $(checkupdates | wc -l) -gt 0 ]",
     "interval": 3600,
@@ -114,6 +114,17 @@
     "exec": "uptime | awk '{print $3}'|sed 's/,//'",
     "interval": 60
   },
+
+ "custom/spotify": {
+    "exec": "~/.config/waybar/scripts/spotify_status.sh",
+    "interval": 1,
+    "return-type": "text",
+    "markup": "pango",
+    "on-click": "playerctl --player=spotify play-pause",
+    "on-scroll-up": "playerctl --player=spotify next",
+    "on-scroll-down": "playerctl --player=spotify previous"
+  },
+
   //----------------------------------------------------------------------------
   //Group Modules
   //----------------------------------------------------------------------------
@@ -127,24 +138,26 @@
     },
     "modules": [
       "custom/sys-indicator",
-      "pulseaudio",
-      "backlight"
+      "custom/bluetooth",
+      "pulseaudio"
     ]
   },
   
   "custom/sys-indicator": {
-    "format": "",
+    "format": "",
   },
 
   "pulseaudio": {
     "format": "{icon}",
+    "format-muted": "",
     "format-icons": [
-      "",
+      "",
       "",
-      ""
+      ""
     ],
-    "on-scroll-up": "pamixer -i 5",
-    "on-scroll-down": "pamixer -d 5",
+    "on-scroll-up": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+",
+    "on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-",
+    "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
     "tooltip": false
   },
  
@@ -157,5 +170,13 @@
     "on-scroll-up": "brightnessctl set +5%",
     "on-scroll-down": "brightnessctl set 5%-",
     "tooltip": false
+  },
+
+  "custom/bluetooth": {
+    "exec": "~/.config/waybar/scripts/bluetooth.sh",
+    "interval": 3,
+    "tooltip": false,
+    "on-click": "kitty -e bluetui",
+    "on-click-right": "~/.config/waybar/scripts/bluetooth_toggle.sh",
   }
 }

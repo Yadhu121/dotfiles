@@ -3,13 +3,16 @@
  * -------------------------------------------------------------------------- */
 
 @keyframes blink-warning {
-  70% {
+  0% {
     color: white;
   }
 
-  to {
+  30% {
     color: white;
-    background-color: orange;
+  }
+
+  100% {
+    color: orange;
   }
 }
 
@@ -19,8 +22,7 @@
   }
 
   to {
-    color: white;
-    background-color: red;
+    color: red;
   }
 }
 
@@ -83,44 +85,48 @@
   background: transparent;
 }
 
-#cpu.warning {
-  color: orange;
+#cpu.warning label {
+  animation: blink-warning 1s ease-in-out infinite alternate;
 }
 
-#cpu.critical {
-  color: red;
+#cpu.critical label {
+  animation: blink-critical 0.7s ease-in-out infinite alternate;
+}
+
+#cpu:hover {
+  animation: none;
 }
 
 #disk {
   background: transparent;
 }
 
-#disk.warning {
-  color: orange;
+#disk.warning label {
+  animation: blink-warning 1s ease-in-out infinite alternate;
 }
 
-#disk.critical {
-  color: red;
+#disk.critical label {
+  animation: blink-critical 0.7s ease-in-out infinite alternate;
+}
+
+#disk:hover {
+  animation: none;
 }
 
 #memory {
   background: transparent;
 }
 
-#memory {
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-  animation-direction: alternate;
+#memory.warning label {
+  animation: blink-warning 1s linear infinite alternate;
 }
 
-#memory.warning {
-  color: orange;
+#memory.critical label {
+  animation: blink-critical 0.7s ease-in-out infinite alternate;
 }
 
-#memory.critical {
-  color: red;
-  animation-name: blink-critical;
-  animation-duration: 2s;
+#memory:hover {
+  animation: none;
 }
 
 #network {
@@ -147,6 +153,7 @@
   padding-left: 4px;
   padding-right: 10px;
   color: white;
+  opacity: 0.7;
 }
 
 #workspaces button:hover {
@@ -160,6 +167,7 @@
   border-color: transparent;
   color: #ffffff;
   background-color: transparent;
+  opacity: 0.7;
 }
 
 #workspaces button.focused {
@@ -175,7 +183,7 @@
 }
 
 #custom-uptime {
-  padding-right: 5px;
+  padding-right: 8px;
 }
 
 #custom-sys-indicator {
@@ -183,7 +191,7 @@
 }
 
 #pulseaudio {
-  margin-right: 8px;
+  margin-right: 12px;
 }
 
 #group-system .sys-child {
@@ -192,4 +200,25 @@
 
 #group-system {
   padding: 0 6px;
+}
+
+#custom-spotify {
+  min-width: 200px; 
+  margin-left: 25px;
+  color: #ffffff;
+  opacity: 0.7;
+}
+
+#custom-spotify label {
+  min-width: 20px;
+}
+
+tooltip {
+  background: transparent;
+  border: transparent;
+}
+
+#custom-bluetooth {
+  margin-right: 15px;
+  font-size: 15px;
 }
